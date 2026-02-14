@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day My Love</title>
+    <style>
+        :root {
+            --romance-red: #ff2e63;
+            --love-pink: #ff75a0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #0f0b0c;
+            color: #fff;
+            font-family: 'Dancing Script', cursive;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Falling Hearts Animation */
+        .heart {
+            position: fixed;
+            top: -10%;
+            color: var(--romance-red);
+            font-size: 20px;
+            user-select: none;
+            z-index: 1000;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh); }
+        }
+
+        .container {
+            padding: 50px 20px;
+            z-index: 2;
+        }
+
+        .gf-name {
+            font-size: 3.5rem;
+            color: var(--love-pink);
+            text-shadow: 0 0 15px var(--romance-red);
+            margin-bottom: 10px;
+        }
+
+        .main-img-love {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 0 30px var(--love-pink);
+            object-fit: cover;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .love-letter {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 20px;
+            margin: 30px auto;
+            border: 1px solid var(--love-pink);
+            max-width: 400px;
+            font-size: 1.3rem;
+            line-height: 1.6;
+        }
+
+        .btn-whatsapp-love {
+            background: linear-gradient(45deg, #ff4b2b, #ff416c);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 20px rgba(255, 75, 43, 0.4);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<body onclick="playLoveMusic()">
+
+    <div class="container">
+        <p style="letter-spacing: 5px; color: var(--love-pink);">MY VALENTINE</p>
+        
+        <div class="gf-name">Dear My Love Pari</div>
+
+        <h2 style="font-size: 1.8rem;">You make my world beautiful! ❤️</h2>
+
+        <div class="image-box" style="margin: 30px 0;">
+            <img src="love.jpg" class="main-img-love" alt="Love">
+        </div>
+
+        <div class="love-letter">
+            "Tum mil gaye toh mujhse naraz hai khuda,<br>
+    Kehta hai ke ab tujhe mujhse kuch mangne ki zarurat nahi." <br><br>
+    <span style="color: #ff2e63;">Happy Valentine's Day My Life! ❤️</span>
+        </div>
+
+        <audio id="loveMusic" loop>
+            <source src="love_song.mp3" type="audio/mpeg">
+        </audio>
+
+        <p style="font-size: 0.9rem; color: #ff75a0;">(Tap anywhere to hear our song 🎵)</p>
+        <br>
+        
+        <button onclick="shareValentine()" class="btn-whatsapp-love" style="border:none;">
+            SEND TO HER 💝
+        </button>
+    </div>
+
+    <script>
+        // Hearts Animation
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+        setInterval(createHeart, 300);
+
+        // Music Play
+        function playLoveMusic() {
+            document.getElementById("loveMusic").play();
+        }
+
+        // Share Logic
+        function shareValentine() {
+            var myLink = window.location.href;
+            var message = "🌹 *Happy Valentine's Day My Love* 🌹\nMaine tumhare liye ek special surprise banaya hai. Dekho:\n\n" + myLink;
+            window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(message), '_blank');
+        }
+    </script>
+</body>
+</html>
